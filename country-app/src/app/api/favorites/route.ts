@@ -4,7 +4,7 @@ import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import dbConnect from "@/lib/db";
 import User from "@/models/User";
 
-export async function GET(request: Request) {
+export async function GET(_request: Request) {
   const session = await getServerSession(authOptions);
   if (!session) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
@@ -19,7 +19,7 @@ export async function GET(request: Request) {
     }
 
     return NextResponse.json(user.favorites || []);
-  } catch (error) {
+  } catch (_error) {
     return NextResponse.json(
       { error: "Failed to fetch favorites" },
       { status: 500 }
@@ -48,7 +48,7 @@ export async function POST(request: Request) {
     }
 
     return NextResponse.json(user.favorites);
-  } catch (error) {
+  } catch (_error) {
     return NextResponse.json(
       { error: "Failed to add favorite" },
       { status: 500 }
@@ -77,7 +77,7 @@ export async function DELETE(request: Request) {
     }
 
     return NextResponse.json(user.favorites);
-  } catch (error) {
+  } catch (_error) {
     return NextResponse.json(
       { error: "Failed to remove favorite" },
       { status: 500 }

@@ -15,7 +15,8 @@ const globalWithMongoose = globalThis as typeof globalThis & {
   mongoose: MongooseCache;
 };
 
-let cached = globalWithMongoose.mongoose || { conn: null, promise: null };
+// Changed from 'let' to 'const' since we only modify properties, not the variable itself
+const cached = globalWithMongoose.mongoose || { conn: null, promise: null };
 
 async function dbConnect(): Promise<Mongoose> {
   if (cached.conn) return cached.conn;

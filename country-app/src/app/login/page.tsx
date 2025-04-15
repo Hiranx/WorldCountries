@@ -36,9 +36,10 @@ export default function LoginPage() {
         router.push("/dashboard");
         router.refresh(); // Ensure client state is updated
       }
-    } catch (err: any) {
+    } catch (err) {
+      const errorMessage = err instanceof Error ? err.message : "An unknown error occurred";
       setError("LOGIN FAILED. PLEASE TRY AGAIN.");
-      console.error("Login error:", err);
+      console.error("Login error:", errorMessage);
     } finally {
       setLoading(false);
     }
@@ -135,7 +136,7 @@ export default function LoginPage() {
           transition={{ delay: 0.4 }}
           className="mt-6 text-center text-gray-400 font-impact tracking-wider"
         >
-          DON'T HAVE AN ACCOUNT?{" "}
+          DON&apos;T HAVE AN ACCOUNT?{" "}
           <Link href="/register">
             <motion.span
               whileHover={{ color: "#1ED760", scale: 1.05 }}

@@ -78,6 +78,11 @@ interface CountryDetails {
   };
 }
 
+interface Favorite {
+  country: string;
+  flag: string;
+}
+
 export default function CountryDetailPage() {
   const params = useParams();
   const countryName = params?.name as string;
@@ -109,8 +114,8 @@ export default function CountryDetailPage() {
         if (status === "authenticated") {
           const favoritesResponse = await fetch(`/api/favorites?userId=${session.user.id}`);
           if (favoritesResponse.ok) {
-            const favorites = await favoritesResponse.json();
-            setIsFavorite(favorites.some((fav: any) => fav.country === countryName));
+            const favorites: Favorite[] = await favoritesResponse.json();
+            setIsFavorite(favorites.some((fav) => fav.country === countryName));
           }
         }
 
@@ -299,7 +304,7 @@ export default function CountryDetailPage() {
             transition={{ delay: 0.2 }}
             className="bg-gray-900 rounded-xl p-6 shadow-2xl border-2 border-gray-800"
           >
-             <motion.h1 
+            <motion.h1 
               initial={{ x: -50 }}
               animate={{ x: 0 }}
               className="text-4xl font-impact mb-3 text-transparent bg-clip-text bg-gradient-to-r from-[#1DB954] to-[#0a5c36] tracking-tighter"
@@ -406,7 +411,7 @@ export default function CountryDetailPage() {
                   <DetailItem
                     label="DEMONYMS"
                     value={Object.entries(country.demonyms)
-                      .map(([gender, demonym]) => `${demonym.m.toUpperCase()} (MALE), ${demonym.f.toUpperCase()} (FEMALE)`)
+                      .map(([_, demonym]) => `${demonym.m.toUpperCase()} (MALE), ${demonym.f.toUpperCase()} (FEMALE)`)
                       .join("; ")}
                   />
                 )}

@@ -34,7 +34,7 @@ export default function Navbar() {
                   }}
                   className="font-impact tracking-wider text-gray-300"
                 >
-                  PROFILE
+                  {session?.user?.name || "PROFILE"}
                 </motion.span>
               </Link>
               <motion.button 

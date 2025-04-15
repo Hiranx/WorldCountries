@@ -33,6 +33,7 @@ export default function RegisterPage() {
         setError(data.message || "REGISTRATION FAILED");
       }
     } catch (err) {
+      console.error("Registration error:", err);
       setError("SOMETHING WENT WRONG");
     }
   };

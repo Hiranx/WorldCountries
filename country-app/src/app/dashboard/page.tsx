@@ -392,9 +392,9 @@ export default function DashboardPage() {
 
           {error ? (
             <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              className="bg-red-900/50 border border-red-700 text-red-400 px-4 py-3 rounded mb-6 font-impact tracking-wider"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="bg-red-900/50 border border-red-700 text-red-400 px-4 py-3 rounded mb-6 font-impact tracking-wider"
             >
               ERROR: {error}
             </motion.div>
@@ -404,7 +404,7 @@ export default function DashboardPage() {
               animate={{ opacity: 1 }}
               className="text-gray-500 text-center py-12 font-impact tracking-wider"
             >
-              YOU HAVEN'T SAVED ANY FAVORITES YET
+              YOU HAVEN&apos;T SAVED ANY FAVORITES YET
               <p className="mt-2">
                 <Link href="/" className="text-[#1ED760] hover:underline">
                   BROWSE COUNTRIES

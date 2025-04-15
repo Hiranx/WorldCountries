@@ -6,14 +6,6 @@ interface MongooseCache {
   promise: Promise<Mongoose> | null;
 }
 
-// Extend the global object with mongoose cache
-declare global {
-  var _mongoose: {
-    conn: Mongoose | null;
-    promise: Promise<Mongoose> | null;
-  };
-}
-
 const MONGODB_URI = process.env.MONGODB_URI;
 
 if (!MONGODB_URI) {
@@ -25,7 +17,7 @@ if (!MONGODB_URI) {
  * in development. This prevents connections growing exponentially
  * during API Route usage.
  */
-const cached: MongooseCache = global._mongoose || { conn: null, promise: null };
+let cached: MongooseCache = (globalThis as any).mongoose || { conn: null, promise: null };
 
 async function dbConnect(): Promise<Mongoose> {
   if (cached.conn) {

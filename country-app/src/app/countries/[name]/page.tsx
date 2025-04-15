@@ -410,8 +410,8 @@ export default function CountryDetailPage() {
                 {country.demonyms && (
                   <DetailItem
                     label="DEMONYMS"
-                    value={Object.entries(country.demonyms)
-                      .map(([_, demonym]) => `${demonym.m.toUpperCase()} (MALE), ${demonym.f.toUpperCase()} (FEMALE)`)
+                    value={Object.values(country.demonyms)
+                      .map(demonym => `${demonym.m.toUpperCase()} (MALE), ${demonym.f.toUpperCase()} (FEMALE)`)
                       .join("; ")}
                   />
                 )}

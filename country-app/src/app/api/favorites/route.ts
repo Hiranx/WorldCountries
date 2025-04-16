@@ -19,7 +19,8 @@ export async function GET() {
     }
 
     return NextResponse.json(user.favorites || []);
-  } catch {
+  } catch (error) {
+    console.error("Failed to fetch favorites:", error);
     return NextResponse.json(
       { error: "Failed to fetch favorites" },
       { status: 500 }
@@ -48,7 +49,8 @@ export async function POST(request: Request) {
     }
 
     return NextResponse.json(user.favorites);
-  } catch {
+  } catch (error) {
+    console.error("Failed to add favorite:", error);
     return NextResponse.json(
       { error: "Failed to add favorite" },
       { status: 500 }
@@ -77,7 +79,8 @@ export async function DELETE(request: Request) {
     }
 
     return NextResponse.json(user.favorites);
-  } catch {
+  } catch (error) {
+    console.error("Failed to remove favorite:", error);
     return NextResponse.json(
       { error: "Failed to remove favorite" },
       { status: 500 }
